@@ -122,7 +122,6 @@ class AirCargoProblem(Problem):
         possible_actions = []
         kb = PropKB()
         kb.tell(decode_state(state, self.state_map).pos_sentence())
-
         for action in self.actions_list:
             # Check if no positive precondition is false AND
             #          no negative precondition is true
@@ -200,7 +199,7 @@ class AirCargoProblem(Problem):
         count = 0
         s = decode_state(node.state, self.state_map)
         for condition in self.goal:
-            if condition not in s.pos or condition not in s.neg:
+            if condition not in s.pos or condition in s.neg:
                 count += 1
         return count
 
